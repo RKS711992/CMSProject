@@ -1,0 +1,17 @@
+<header>
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div>
+      <a href="https://www.stc.com.sa/wps/wcm/connect/english/individual/individual" class="navbar-brand">STC</a> </div>
+    <ul class="navbar-nav">
+      <li><a routerLink="/cms/select-app/upadmin" class="nav-link"
+          *ngIf="basicAuthService.isUserLoggedIn()">Select Application</a></li>
+    </ul>
+    <ul class="navbar-nav navbar-collapse justify-content-end">
+      <li><a routerLink="/cms" class="nav-link" *ngIf="!basicAuthService.isUserLoggedIn()">Login</a></li>
+      <li><a routerLink="/cms/logout" class="nav-link"
+          *ngIf="basicAuthService.isUserLoggedIn()">Logout</a></li>
+    </ul>
+
+
+  </nav>
+</header>

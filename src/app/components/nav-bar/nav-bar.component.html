@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-primary mb-4">
+  <div class="container">
+    <a href="https://www.stc.com.sa/wps/wcm/connect/english/individual/individual" class="navbar-brand">STC</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMain">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarMain">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a routerLink="/cms/select-app/upadmin" class="nav-link"
+            *ngIf="basicAuthService.isUserLoggedIn()">Dashboard</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a routerLink="/cms" class="nav-link" *ngIf="!basicAuthService.isUserLoggedIn()">Login</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/cms/logout" class="nav-link" *ngIf="basicAuthService.isUserLoggedIn()">Logout</a>
+        </li>
+        <!-- <li class="nav-item">
+          <a routerLink="/cms/register" class="nav-link" *ngIf="basicAuthService.showRegisterAndSettings()">RegisterUser</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/cms/settings" class="nav-link" *ngIf="basicAuthService.showRegisterAndSettings()">Settings</a>
+        </li> 
+        <li class="nav-item">
+          <a routerLink="/cms/view-products" class="btn btn-link" *ngIf="basicAuthService.showRegisterAndSettings()"><i class="fa fa-arrow-circle-o-left"></i>Back To All Products</a>
+        </li> -->
+      </ul>
+    </div>
+  </div>
+</nav>

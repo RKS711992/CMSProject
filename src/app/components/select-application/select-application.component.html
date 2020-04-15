@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="card">
+    <h1>Welcome to CMS Application Page</h1><br>
+    <div class="container" >
+      <h2>{{userFromService}}</h2>
+    </div>
+    <!-- <h2>{{name}}</h2> -->
+    <!-- <h2>{{userFromService}}</h2> -->
+    <div class="card-body">
+      <div class="btn-group pull-left">
+        <a routerLink="/cms/create-product" class="btn btn-link">
+          <button>
+            <h1><i class="fa fa-plus" aria-hidden="true"></i></h1><br>
+            Create Product
+          </button>
+        </a>
+      </div>
+      <div class="btn-group pull-right">
+        <a routerLink="/cms/view-products" class="btn btn-link">
+
+          <button>
+            <h1><i class="fa fa-eye" aria-hidden="true"></i></h1><br>
+            View Products
+          </button>
+
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <div class="container">
+  <button class="btn btn-success" (click)="getWelcomeMessage()">Get Welcome Message</button>
+  <div class="container" *ngIf="userFromService">
+    {{userFromService}}
+  </div>
+</div> -->

@@ -1,0 +1,64 @@
+Setting up Basic Express Server
+===================================
+We create a new folder : server
+Now we open the folder in command prompt and then we initialize a new package.json file using command : npm init --yes
+Next we install teh relevant dependencies by using :
+	npm install --save express body-parser cors
+	(where express is our webserver, body-parser is our middleware to handle form data and cors is the package to make requests across different ports)
+
+Now that the dependencies are install in the Server folder, we create a new file : server.js
+here we begin by requiring the packages we just install:
+	const express = require('express');
+	const bodyParser =  require('body-parser');
+	const cors = require('cors');
+
+Now we craete a contstant for Port number that our express server would run on:
+	const PORT = 3000
+
+now we craete an instance of express :
+	const app  = express();
+
+We also specify body-parser to handle JSON data:
+	app.use(bodyParser.json());
+
+we also need to use the cors package:
+	app.use(cors());
+
+now we add a code to test a get Request:
+
+app.get('ROOT_PATH',CALLBACK_FUNCTION(REQUEST,RESPONSE){
+	RESPONSE.send('MESSAGE_YOU_WANT_TO_DISPLAY');
+});
+
+That is:
+
+	app.get('/',function(req,resp){
+		resp.send('Hello from server!!!');
+	})
+
+Now we listen to the request on the specified port:
+
+app.listen(PORT_CREATED_ABOVE,CALLBACK_FUNCTION(){
+	console.log("Server_RUNNING_ON_LOCLAHOST_PORT: "+PORT_CREATED_ABOVE);
+});
+
+That is:	
+
+	app.listen(PORT, function(){
+		console.log("Server running on localhost:"+PORT);
+	})
+	
+	
+Now in the command prompt we do node server  and we should get the message :
+	Server running on localhost: 3000
+
+This means our express server is running.
+
+
+Now lets add an ENDPOINT where our angular app will post the form Data to:
+
+	app.post('/enroll', function(req,resp){
+		console.log(req.body);// req.body consists of teh user data taht was submitted by the angular app
+		resp.status(200).send({"message":"Data Received"});
+		//resp.status(401).send({"message":"Some error"});
+	})

@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="col-md-12 text-center">
+    <h2><i class="fa fa-file"></i>All Products</h2>
+  </div>
+</div>
+<div class="container">
+  <div class="alert alert-success" *ngIf="message">{{messsage}}</div><br>
+</div>
+<div class="col-md-12 table-responsive table-hover">
+  <table class="table" *ngIf="productInfo?.length>0; else noProducts">
+    <thead class="thead-inverse">
+      <tr>
+        <th>Order Id</th>
+        <th>Product Service ID</th>
+        <th>Product Type</th>
+        <th>Product Name (EN)</th>
+        <th>Status</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- <tr *ngFor="let info of infos"> -->
+      <tr *ngFor="let info of productInfo">
+        <td>{{info.productType}}{{info.productServiceId}}</td>
+        <td>{{info.productServiceId}}</td>
+        <td>{{info.productType}}</td>
+        <td>{{info.prodNameEN}}</td>
+        <td *ngIf="info.createdDate">Completed</td>
+        <!-- <td><button class="btn btn-warning " (click)="updateProduct(info.productServiceId)">Update</button></td>
+        <td><button class="btn btn-danger" (click)="deleteProduct(info.productServiceId)">Delete</button></td> -->
+        <td><a routerLink="/cms/create-product/{{info.productServiceId}}" class="btn btn-secondary btn-sm"><i
+              class="fa fa-arrow-circle-o-right"></i>Details</a>
+
+      </tr>
+    </tbody>
+  </table>
+
+  <ng-template #noProducts>
+    <hr>
+    <h5>
+      There are no Products!!!
+    </h5>
+  </ng-template>
+</div>

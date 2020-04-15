@@ -1,0 +1,189 @@
+<div class="container">
+  <div class="container" *ngIf="(product.productServiceId==null);else UpdateProduct">
+    <h1 class="text-center">Create Product</h1>
+  </div>
+
+  <ng-template #UpdateProduct>
+    <h1 class="text-center">Update Product</h1>
+  </ng-template>
+
+
+  <div class="card ">
+    <div class="card-header">
+      <h4>Marketing Product Info</h4>
+    </div>
+    <div class="card-body">
+      <table class="table table-striped text-center table-responsive">
+        <thead>
+          <tr>
+            <th>ProductType</th>
+            <th *ngIf="product.productServiceId">Product Service Id</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <select [(ngModel)]="product.productType" name="productType" [disabled]="(product.productServiceId>0)">
+                <option value="BTL">BTL</option>
+                <option value="ATL">ATL</option>
+                <option value="RefillBTL">RefillBTL</option>
+                <option value="ebuBTL">ebuBTL</option>
+              </select></td>
+            <td *ngIf="product.productServiceId">
+              <input type="text" [(ngModel)]="product.productType+product.productServiceId" name="productServiceId"
+                id="" disabled value="ProductServiceId">
+            </td>
+          </tr>
+        </tbody><br>
+        <thead>
+          <tr>
+            <th>Product Service Name (AR)</th>
+            <th>Product Service Name (EN)</th>
+            <th>Product Service Name (L1)</th>
+            <th>Product Service Name (L2)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <input type="text" [(ngModel)]="product.prodNameAR" name="prodNameAR" id="" required>
+            </td>
+            <td>
+              <input type="text" [(ngModel)]="product.prodNameEN" name="prodNameEN" id="" required>
+            </td>
+            <td>
+              <input type="text" [(ngModel)]="product.prodNameL1" name="prodNameL1" id="">
+            </td>
+            <td>
+              <input type="text" [(ngModel)]="product.prodNameL2" name="prodNameL2" id="">
+            </td>
+          </tr>
+        </tbody><br>
+        <thead>
+          <tr>
+            <th>Product Description (AR)</th>
+
+            <th>Product Description (EN)</th>
+
+            <th>Product Description (L1)</th>
+
+            <th>Product Description (L2)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <textarea [(ngModel)]="product.prodDescAR" name="prodDescAR" id="" cols="30" rows="4"></textarea>
+            </td>
+            <td>
+              <textarea [(ngModel)]="product.prodDescEN" name="prodDescEN" id="" cols="30" rows="4"></textarea>
+            </td>
+            <td>
+              <textarea [(ngModel)]="product.prodDescL1" name="prodDescL1" id="" cols="30" rows="4"></textarea>
+            </td>
+            <td>
+              <textarea [(ngModel)]="product.prodDescL2" name="prodDescL2" id="" cols="30" rows="4"></textarea>
+            </td>
+          </tr>
+        </tbody><br>
+      </table>
+    </div>
+    <div class="card-header">
+      <h4>Activation Info</h4>
+    </div>
+    <div class="card-body">
+      <table class="table table-striped text-center table-responsive">
+        <thead>
+          <tr class="text-left">
+            <th>Segmentation</th>
+            <th>Product Subscription Type</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="text-left"><select [(ngModel)]="product.segmentation" name="segmentation"
+                [disabled]="(product.productServiceId>0)">
+                <option value="1">1</option>
+                <option value="2">2</option>
+              </select></td>
+            <td class="text-left">
+              <select [(ngModel)]="product.productSubscriptonType" name="productSubscriptonType"
+                [disabled]="(product.productServiceId>0)">
+                <option value="20">20</option>
+                <option value="21">21</option>
+              </select>
+            </td>
+          </tr>
+        </tbody><br>
+        <thead>
+          <tr class="text-left">
+            <th>Product Price</th>
+            <th>Number Of Product Renewals</th>
+            <th>Product Renewal End Date</th>
+            <th>Validity Days</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <input type="number" [(ngModel)]="product.productPrice" name="productPrice" id="" min="0">
+            </td>
+
+            <td>
+              <input type="number" [(ngModel)]="product.numberOfProductRenewals" name="numberOfProductRenewals" id=""
+                min="0">
+            </td>
+            <td>
+              <input type="date" [ngModel]="product.productRenewalEndDate | date : 'yyyy-MM-dd'"
+                (ngModelChange)="product.productRenewalEndDate = $event" name="productRenewalEndDate" id="">
+            </td>
+            <td>
+              <input type="number" [(ngModel)]="product.validityDays" name="validityDays" id="" min="0">
+            </td>
+          </tr>
+        </tbody><br>
+        <thead>
+          <tr class="text-left">
+            <th>Validity Hours</th>
+            <th>Validity Minutes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <input type="number" [(ngModel)]="product.validityHours" name="validityHours" id="" min="0">
+            </td>
+            <td>
+              <input type="number" [(ngModel)]="product.validityMinutes" name="validityMinutes" id="" min="0">
+            </td>
+          </tr>
+        </tbody><br>
+      </table>
+    </div>
+  </div>
+  <div class="row text-center">
+    <div class="container ">
+      <button class="btn btn-success" style="margin-right:20px" type="submit" (click)=handleSubmit()
+        *ngIf="!(product.productServiceId>0)">
+        <strong>Submit</strong>
+      </button>
+
+      <button class="btn btn-warning" style="margin-right:20px" type="submit" (click)=handleSubmit()
+        *ngIf="(product.productServiceId>0)">
+        <strong>Update</strong>
+      </button>
+
+      <button class="btn btn-primary" style="margin-right:20px" type="submit" (click)=deleteProduct(product.productServiceId)
+        *ngIf="(product.productServiceId>0)">
+        <strong>Delete</strong>
+      </button>
+
+      <button class="btn btn-danger" style="margin-right:20px" type="submit" (click)=handleCancel()>
+        <strong>Cancel</strong>
+      </button>
+    </div>
+  </div>
+
+
+
+</div>
